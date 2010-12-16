@@ -1,0 +1,4 @@
+name = video
+description = Provides a modern HTML5-compatible video field type
+core = 7.x
+

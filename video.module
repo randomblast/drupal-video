@@ -1,0 +1,38 @@
+<?php
+
+function video_menu()
+{
+  $menu['admin/config/media/video-styles'] = array
+  (
+    'title' => 'Video styles'
+  , 'description' => 'Configure styles that can be applied to uploaded videos'
+  , 'page callback' => 'video_styles_list'
+  , 'access arguments' => 'administer video styles'
+  , 'file' => 'video.admin.inc'
+  , 'type' => MENU_NORMAL_ITEM
+  );
+
+  $menu['admin/config/media/video-styles/add'] = array
+  (
+    'title' => 'Add style'
+  , 'description' => 'Add a new video style'
+  , 'page callback' => 'drupal_get_form'
+  , 'page arguments' => 'video_add_style_form'
+  , 'access arguments' => 'administer video styles'
+  , 'file' => 'video.admin.inc'
+  , 'type' => MENU_NORMAL_ITEM
+  );
+
+  return $menu;
+}
+function video_permission()
+{
+  return array
+  (
+    'administer video styles' => array
+    (
+      'title' => t('Administer video styles')
+    , 'description' => t('Add/delete/edit video styles')
+    )
+  );
+}

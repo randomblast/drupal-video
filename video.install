@@ -1,0 +1,15 @@
+<?php
+
+function video_install()
+{
+  // install schema
+}
+
+function video_uninstall()
+{
+}
+
+function video_schema()
+{
+  
+}

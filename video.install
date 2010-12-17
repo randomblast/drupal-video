@@ -2,14 +2,58 @@
 
 function video_install()
 {
-  // install schema
+  drupal_install_schema('video');
 }
 
 function video_uninstall()
 {
+  drupal_uninstall_schema('video');
 }
 
 function video_schema()
 {
-  
+  return array
+  (
+    'video_style' => array
+    (
+//      'description' => 'Settings for video styles'
+      'primary keys' => array('name')
+    , 'fields' => array
+      (
+        'name' => array
+        (
+          'type' => 'varchar'
+//        , 'description' => 'Letters, numbers, -, and _ please'
+        , 'not null' => TRUE
+        )
+      , 'video_keep_aspect' => array
+        (
+          'type' => 'int'
+//        , 'description' => 'Should the output video match the original aspect ratio'
+        , 'size' => 'tiny'
+        )
+      , 'video_max_width' => array
+        (
+          'type' => 'int'
+//        , 'description' => 'Maximum width of the output video'
+        , 'size' => 'small'
+        , 'not null' => TRUE
+        )
+      , 'video_max_height' => array
+        (
+          'type' => 'int'
+//        , 'description' => 'Maximum height of the output video'
+        , 'size' => 'small'
+        , 'not null' => TRUE
+        )
+      , 'arguments' => array
+        (
+          'type' => 'text'
+//        , 'description' => 'Serialised array of ffmpeg arguments and their values'
+        , 'serialize' => TRUE
+        , 'not null' => TRUE
+        )
+      )
+    )
+  );
 }

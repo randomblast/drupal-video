@@ -6,8 +6,8 @@ function video_menu()
   (
     'title' => 'Video styles'
   , 'description' => 'Configure styles that can be applied to uploaded videos'
-  , 'page callback' => 'video_styles_list'
-  , 'access arguments' => 'administer video styles'
+  , 'page callback' => 'video_styles_page'
+  , 'access arguments' => array('administer video styles')
   , 'file' => 'video.admin.inc'
   , 'type' => MENU_NORMAL_ITEM
   );
@@ -17,8 +17,8 @@ function video_menu()
     'title' => 'Add style'
   , 'description' => 'Add a new video style'
   , 'page callback' => 'drupal_get_form'
-  , 'page arguments' => 'video_add_style_form'
-  , 'access arguments' => 'administer video styles'
+  , 'page arguments' => array('video_add_style_form')
+  , 'access arguments' => array('administer video styles')
   , 'file' => 'video.admin.inc'
   , 'type' => MENU_NORMAL_ITEM
   );
@@ -34,5 +34,37 @@ function video_permission()
       'title' => t('Administer video styles')
     , 'description' => t('Add/delete/edit video styles')
     )
+  );
+}
+function video_available_container_formats()
+{
+  // TODO Ask ffmpeg what we can support
+  return array
+  (
+    'ipod' => 'iPod H.264 MP4 format'
+  , 'webm' => 'WebM file format'
+  , 'mp4' => 'MP4 format'
+  );
+}
+function video_available_video_codecs()
+{
+  // TODO Ask ffmpeg what we can support
+  return array
+  (
+      'mpeg4' => 'MPEG-4 part 2'
+    , 'libvpx' => 'libvpx VP8'
+    , 'h264' => 'H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10'
+  );
+}
+function video_available_audio_codecs()
+{
+  // TODO Ask ffmpeg what we can support
+  return array
+  (
+    'mp3' => 'MP3 (MPEG audio layer 3)'
+  , 'aac' => 'Advanced Audio Coding'
+  , 'vorbis' => 'Vorbis'
+  , 'alac' => 'ALAC (Apple Lossless Audio Codec)'
+  , 'flac' => 'FLAC (Free Lossless Audio Codec)'
   );
 }
